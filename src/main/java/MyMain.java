@@ -46,8 +46,19 @@ public class MyMain {
     // countBigDigits(99999) => 5
     // countBigDigits(521931) => 2
     public static int countBigDigits(int x) {
-        // YOUR CODE HERE
-        return -1;
+        return countBigDigits2(x, 0);
+    }
+
+    public static int countBigDigits2(int x, int count){
+        if(x == 0){
+            return count;
+        }
+        else if(x % 10 >= 5){
+            return countBigDigits2(x / 10, count + 1);
+        }
+        else{
+            return countBigDigits2(x / 10, count);
+        }
     }
 
     // Write a method that uses recursion to calculate whether
@@ -64,8 +75,27 @@ public class MyMain {
     // moreOddThanEven(99999) => true because 5 odd and 0 even
     // moreOddThanEven(521931) => true because 5 odd and 1 even
     public static boolean moreOddThanEven(int x) {
-        // YOUR CODE HERE
-        return false;
+        return moreOddThanEven2(x, 0, 0);
+    }
+
+    public static boolean moreOddThanEven2(int x, int even, int odd) {
+        if(x == 0){
+            if(odd > even){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else if((x % 10) % 2 == 0){
+            return moreOddThanEven2(x / 10, even + 1, odd);
+        }
+        else if((x % 10) % 2 == 1){
+            return moreOddThanEven2(x / 10, even, odd + 1);
+        }
+        else{
+            return false;
+        }
     }
 
     // This might be helpful to get started:
@@ -81,8 +111,14 @@ public class MyMain {
     // isPalindrome("madam") => true
     // isPalindrome("racecars") => false
     public static boolean isPalindrome(String str) {
-        // YOUR CODE HERE
-        return false;
+        return isPalindrome2(str, "");
+    }
+
+    public static boolean isPalindrome2(String str, String check){
+        if(str.equals("")){
+            return false;
+        }
+       return false;
     }
 
 
@@ -98,10 +134,17 @@ public class MyMain {
     // countBigDigits(99999) => 45
     // countBigDigits(521931) => 21
     public static int addDigits(int x) {
-        // YOUR CODE HERE
-        return -1;
+        return addDigits2(x, 0);
     }
 
+    public static int addDigits2(int x, int count){
+        if(x == 0){
+            return count;
+        }
+        else{
+            return addDigits2(x / 10, count + x % 10);
+        }
+    }
     // Write a method that is given a String containing a single pair
     // of matched parentheses containing some characters. This method
     // should use recursion to "trim" off all the extra characters until
@@ -122,9 +165,20 @@ public class MyMain {
     // reverse("desserts") => stressed
     // reverse("racecar") => racecar
     public static String reverse(String str) {
-        // YOUR CODE HERE
-        return "";
+        return reverse2(str, "");
     }
+
+    public static String reverse2(String str, String str2){
+        if(str.equals("")){
+            return "";
+        }
+        else{
+            String letter = str.substring(str.length() - 1, str.length());
+            return reverse2(str.substring(0, str.length() - 1), str2 + letter);
+        }
+    }
+
+
 
 
 
